@@ -15,6 +15,14 @@
 		6B829F851C37894A0085E257 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B829F831C37894A0085E257 /* LaunchScreen.storyboard */; };
 		6B829F901C37894B0085E257 /* MomirVigV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F8F1C37894B0085E257 /* MomirVigV2Tests.m */; };
 		6B829F9B1C37894B0085E257 /* MomirVigV2UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F9A1C37894B0085E257 /* MomirVigV2UITests.m */; };
+		6B829FAA1C378B1F0085E257 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829FA91C378B1F0085E257 /* PageContentViewController.m */; };
+		6B829FB01C378EFC0085E257 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAC1C378EFC0085E257 /* page1.png */; };
+		6B829FB11C378EFC0085E257 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAD1C378EFC0085E257 /* page2.png */; };
+		6B829FB21C378EFC0085E257 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAE1C378EFC0085E257 /* page3.png */; };
+		6B829FB31C378EFC0085E257 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAF1C378EFC0085E257 /* page4.png */; };
+		6B829FB71C38BEDF0085E257 /* AllCards-x.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FB51C38BEDF0085E257 /* AllCards-x.json */; };
+		6B829FB81C38BEDF0085E257 /* AllSets-x.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FB61C38BEDF0085E257 /* AllSets-x.json */; };
+		6B829FBA1C38C0EE0085E257 /* MODO.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FB91C38C0EE0085E257 /* MODO.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +59,15 @@
 		6B829F961C37894B0085E257 /* MomirVigV2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomirVigV2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B829F9A1C37894B0085E257 /* MomirVigV2UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MomirVigV2UITests.m; sourceTree = "<group>"; };
 		6B829F9C1C37894B0085E257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B829FA81C378B1F0085E257 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
+		6B829FA91C378B1F0085E257 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
+		6B829FAC1C378EFC0085E257 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
+		6B829FAD1C378EFC0085E257 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
+		6B829FAE1C378EFC0085E257 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
+		6B829FAF1C378EFC0085E257 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
+		6B829FB51C38BEDF0085E257 /* AllCards-x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "AllCards-x.json"; sourceTree = "<group>"; };
+		6B829FB61C38BEDF0085E257 /* AllSets-x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "AllSets-x.json"; sourceTree = "<group>"; };
+		6B829FB91C38C0EE0085E257 /* MODO.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MODO.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +118,15 @@
 		6B829F741C3789490085E257 /* MomirVigV2 */ = {
 			isa = PBXGroup;
 			children = (
+				6B829FB41C38BEDF0085E257 /* Cards */,
+				6B829FAB1C378EFC0085E257 /* PageViewDemoImages */,
 				6B829F781C3789490085E257 /* AppDelegate.h */,
 				6B829F791C3789490085E257 /* AppDelegate.m */,
 				6B829F7B1C37894A0085E257 /* ViewController.h */,
 				6B829F7C1C37894A0085E257 /* ViewController.m */,
 				6B829F7E1C37894A0085E257 /* Main.storyboard */,
+				6B829FA81C378B1F0085E257 /* PageContentViewController.h */,
+				6B829FA91C378B1F0085E257 /* PageContentViewController.m */,
 				6B829F811C37894A0085E257 /* Assets.xcassets */,
 				6B829F831C37894A0085E257 /* LaunchScreen.storyboard */,
 				6B829F861C37894A0085E257 /* Info.plist */,
@@ -138,6 +159,27 @@
 				6B829F9C1C37894B0085E257 /* Info.plist */,
 			);
 			path = MomirVigV2UITests;
+			sourceTree = "<group>";
+		};
+		6B829FAB1C378EFC0085E257 /* PageViewDemoImages */ = {
+			isa = PBXGroup;
+			children = (
+				6B829FAC1C378EFC0085E257 /* page1.png */,
+				6B829FAD1C378EFC0085E257 /* page2.png */,
+				6B829FAE1C378EFC0085E257 /* page3.png */,
+				6B829FAF1C378EFC0085E257 /* page4.png */,
+			);
+			path = PageViewDemoImages;
+			sourceTree = "<group>";
+		};
+		6B829FB41C38BEDF0085E257 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				6B829FB91C38C0EE0085E257 /* MODO.jpeg */,
+				6B829FB51C38BEDF0085E257 /* AllCards-x.json */,
+				6B829FB61C38BEDF0085E257 /* AllSets-x.json */,
+			);
+			path = Cards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,9 +285,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B829FBA1C38C0EE0085E257 /* MODO.jpeg in Resources */,
+				6B829FB81C38BEDF0085E257 /* AllSets-x.json in Resources */,
 				6B829F851C37894A0085E257 /* LaunchScreen.storyboard in Resources */,
 				6B829F821C37894A0085E257 /* Assets.xcassets in Resources */,
+				6B829FB71C38BEDF0085E257 /* AllCards-x.json in Resources */,
+				6B829FB21C378EFC0085E257 /* page3.png in Resources */,
+				6B829FB31C378EFC0085E257 /* page4.png in Resources */,
+				6B829FB01C378EFC0085E257 /* page1.png in Resources */,
 				6B829F801C37894A0085E257 /* Main.storyboard in Resources */,
+				6B829FB11C378EFC0085E257 /* page2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B829F7D1C37894A0085E257 /* ViewController.m in Sources */,
+				6B829FAA1C378B1F0085E257 /* PageContentViewController.m in Sources */,
 				6B829F7A1C3789490085E257 /* AppDelegate.m in Sources */,
 				6B829F771C3789490085E257 /* main.m in Sources */,
 			);
