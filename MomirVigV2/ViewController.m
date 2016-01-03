@@ -46,6 +46,8 @@
     [self addChildViewController:_mPageViewController];
     [self.view addSubview:_mPageViewController.view];
     [self.mPageViewController didMoveToParentViewController:self];
+    
+    [self FirstTimeSetup];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +62,12 @@
     [self DownloadImageWithID:aImageID];
     
     [self.mPageImages addObject:aImageID];
+}
+//TODO
+-(void) FetchCardWithCMC: (NSInteger*) aCMC {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 }
 
 -(void) DownloadImageWithID:(NSString*) aID {
@@ -80,6 +88,27 @@
     [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
     
     //return image;
+}
+
+-(void) FirstTimeSetup {
+    //TODO: Check if this already exists. If it does, return
+    
+    NSError* err = nil;
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"AllCards-x" ofType:@"json"];
+    NSArray* allCardData = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
+                                                     options:kNilOptions
+                                                       error:&err];
+    
+    for(NSDictionary * dict in allCardData)
+    {
+        if([[dict valueForKey:@"types"]  isEqual: @"Creature"]) {
+            //TODO: Create files for each CMC, fill them here
+            [dict valueForKey:@"id"];
+            [dict valueForKey:@"cmc"];
+        }        
+    }
+    
+    //NSLog(@"Imported Cards: %@", allCardData);
 }
 
 #pragma mark - Page View Controller Data Source
