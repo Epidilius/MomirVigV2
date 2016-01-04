@@ -18,4 +18,7 @@
     self.mCardNameLabel.text = self.mTitleText;
 }
 
+- (IBAction)GenerateNewCard:(id)sender {
+    
+}
 @end

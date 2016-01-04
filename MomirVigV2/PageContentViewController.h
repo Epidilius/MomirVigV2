@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface PageContentViewController : UIViewController
+
+- (IBAction)GenerateNewCard:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIImageView *mCardImageView;
 @property (weak, nonatomic) IBOutlet UILabel *mCardNameLabel;
 

@@ -30,7 +30,9 @@
     
     // Create path.
     self.mPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    self.mFilePath = [[self.mPaths objectAtIndex:0] stringByAppendingPathComponent:@"Cards/Images"];
+    self.mFilePath = [[self.mPaths objectAtIndex:0] stringByAppendingPathComponent:@"/Cards"];
+    self.mCardsPath = @"/CardData";
+    self.mImagesPath = @"/CardImages";
     
     // Create page view controller
     self.mPageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -94,22 +96,131 @@
     //TODO: Check if this already exists. If it does, return
     
     NSError* err = nil;
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"AllCards-x" ofType:@"json"];
-    NSArray* allCardData = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
-                                                     options:kNilOptions
-                                                       error:&err];
+    //TODO: Remove this
+    NSInteger creatureCount = 0;
+    NSInteger creaturesRemoved = 0;
     
-    for(NSDictionary * dict in allCardData)
-    {
-        if([[dict valueForKey:@"types"]  isEqual: @"Creature"]) {
-            //TODO: Create files for each CMC, fill them here
-            [dict valueForKey:@"id"];
-            [dict valueForKey:@"cmc"];
-        }        
+    NSString* folderPath = [[NSBundle mainBundle] pathForResource:@"2ED" ofType:@"json"];
+    folderPath = [folderPath stringByReplacingOccurrencesOfString:@"2ED.json" withString:@""];
+   
+    NSArray* listOfFiles = [self GetPathsOfType:@"json" InDirectory:folderPath];
+    
+    NSMutableArray *cardDataArray = [[NSMutableArray alloc] init];
+    
+    for(int i = 0; i < 21; i++) {
+        NSString *indexToAdd = [NSString stringWithFormat:@"%i", i];
+        indexToAdd = [indexToAdd stringByAppendingString:@":|"];
+        
+        [cardDataArray addObject:indexToAdd];
+    }
+    
+    for(NSString *path in listOfFiles) {
+        
+        NSString* dataPath = [[NSBundle mainBundle] pathForResource:path ofType:@"json"];
+        NSDictionary* allCardData = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
+                                                         options:kNilOptions
+                                                           error:&err];
+        
+        NSString *setCode = [allCardData valueForKey:@"code"];
+        if([setCode isEqualToString:@"UGL"] || [setCode isEqualToString:@"UNH"])
+            continue;
+        
+        NSLog(setCode);
+        
+        allCardData = [allCardData valueForKey:@"cards"];
+        
+        
+        for(NSDictionary * dict in allCardData)
+        {
+            NSString *type = [[dict objectForKey:@"types"] description];
+            type = [type stringByReplacingOccurrencesOfString:@" " withString:@""];
+            type = [type stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            type = [type stringByReplacingOccurrencesOfString:@"(" withString:@""];
+            type = [type stringByReplacingOccurrencesOfString:@")" withString:@""];
+            
+            NSString *layout = [[dict objectForKey:@"layout"] description];
+            
+            //NSString *cardName = [dict valueForKey:@"name"];
+            
+            //NSLog(dict);
+            if([type isEqual: @"Creature"] && ![layout isEqual:@"token"]) {
+                NSString *cardID = [dict valueForKey:@"id"];
+                cardID = [cardID stringByAppendingString:@"---"];
+                NSString *name = [dict valueForKey:@"name"];
+                NSInteger cmc = [[dict valueForKey:@"cmc"] intValue];
+                
+                if(cmc == 0 && ([layout isEqual: @"flip"] || [layout isEqual:@"double-faced"])) {
+                    NSLog(name);
+                    continue;
+                }
+                
+                //TODO: Find out why Im not getting draco
+                NSString *currentCards = [cardDataArray objectAtIndex:cmc];
+                if([currentCards containsString:name]) {
+                    creaturesRemoved++;
+                    continue;
+                }
+                
+                NSString *card = [cardID stringByAppendingString:name];
+                card = [currentCards stringByAppendingString:card];
+                card = [card stringByAppendingString:@"|"];
+                
+                creatureCount++;    //TODO: This should be ~8000
+                
+                [cardDataArray replaceObjectAtIndex:cmc withObject:card];
+            }
+        }
+    }
+    
+    //TODO: Save each element as file
+    
+    for(int i = 0; i < cardDataArray.count; i++) {
+        NSString* fileName = [NSString stringWithFormat:@"%i", i];
+        fileName = [fileName stringByAppendingString:@".txt"];
+        [self SaveToFile:[cardDataArray objectAtIndex:i] WithName:fileName];
     }
     
     //NSLog(@"Imported Cards: %@", allCardData);
 }
+
+-(void) SaveToFile:(NSString*) aToSave WithName:(NSString*) aFileName{
+    //CREATE FILE
+    
+    NSError *error;
+    
+    // Create file manager
+    //NSFileManager *fileMgr = [NSFileManager defaultManager];
+        
+    NSString *filePath = [[self.mFilePath stringByAppendingString:self.mCardsPath ] stringByAppendingPathComponent:aFileName];
+    
+    NSLog(@"string to write:%@",aToSave);
+    // Write to the file
+    [aToSave writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+}
+
+- (NSArray *)GetPathsOfType:(NSString *)aType InDirectory:(NSString *)aDirectoryPath{
+    
+    NSMutableArray *filePaths = [[NSMutableArray alloc] init];
+    
+    // Enumerators are recursive
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:aDirectoryPath];
+    
+    NSString *filePath;
+    
+    while ((filePath = [enumerator nextObject]) != nil){
+        
+        // If we have the right type of file, add it to the list
+        // Make sure to prepend the directory path
+        if([[filePath pathExtension] isEqualToString:aType]){
+            filePath = [filePath stringByReplacingOccurrencesOfString:@".json" withString:@""];
+            [filePaths addObject:filePath];//[aDirectoryPath stringByAppendingPathComponent:filePath]];
+        }
+    }
+    
+    return filePaths;
+}
+
+
 
 #pragma mark - Page View Controller Data Source
 

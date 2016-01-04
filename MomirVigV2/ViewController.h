@@ -19,10 +19,11 @@
 
 @property (strong, nonatomic) NSArray *mPaths;
 @property (strong, nonatomic) NSString *mFilePath;
+@property (strong, nonatomic) NSString *mCardsPath;
+@property (strong, nonatomic) NSString *mImagesPath;
 
 @property (strong, nonatomic) NSString *mURL;
 @property (strong, nonatomic) NSString *mPortionOfURLToReplace;
 
 
 @end
-

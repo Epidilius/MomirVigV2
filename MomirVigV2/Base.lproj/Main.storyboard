@@ -33,6 +33,9 @@
                                     <constraint firstAttribute="width" constant="25" id="1my-9p-0Xx"/>
                                 </constraints>
                                 <state key="normal" title="N"/>
+                                <connections>
+                                    <action selector="GenerateNewCard:" destination="s8v-tq-b9Q" eventType="touchUpInside" id="FVy-gv-I6B"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBh-lg-Hrr">
                                 <rect key="frame" x="553" y="28" width="25" height="30"/>
