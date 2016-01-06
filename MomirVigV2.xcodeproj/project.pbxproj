@@ -440,6 +440,8 @@
 		6B87EA9D1C3A0DF100F991BD /* WTH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WTH.json; sourceTree = "<group>"; };
 		6B87EA9E1C3A0DF100F991BD /* WWK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WWK.json; sourceTree = "<group>"; };
 		6B87EA9F1C3A0DF100F991BD /* ZEN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ZEN.json; sourceTree = "<group>"; };
+		ACE5C47EA49FAA7AEFC6FD3A /* Pods-MomirVigV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MomirVigV2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MomirVigV2/Pods-MomirVigV2.debug.xcconfig"; sourceTree = "<group>"; };
+		E710781951FD77EF5C7B5A53 /* Pods-MomirVigV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MomirVigV2.release.xcconfig"; path = "Pods/Target Support Files/Pods-MomirVigV2/Pods-MomirVigV2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,6 +469,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C0DB7A9F0FAFA288BA8ECA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2A98B61DAB22269CEE2A2B16 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ACE5C47EA49FAA7AEFC6FD3A /* Pods-MomirVigV2.debug.xcconfig */,
+				E710781951FD77EF5C7B5A53 /* Pods-MomirVigV2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6B829F691C3789480085E257 = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +492,8 @@
 				6B829F8E1C37894B0085E257 /* MomirVigV2Tests */,
 				6B829F991C37894B0085E257 /* MomirVigV2UITests */,
 				6B829F731C3789480085E257 /* Products */,
+				2A98B61DAB22269CEE2A2B16 /* Pods */,
+				1C0DB7A9F0FAFA288BA8ECA4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1213,6 +1233,7 @@
 		};
 		6B829FA01C37894B0085E257 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACE5C47EA49FAA7AEFC6FD3A /* Pods-MomirVigV2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MomirVigV2/Info.plist;
@@ -1224,6 +1245,7 @@
 		};
 		6B829FA11C37894B0085E257 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E710781951FD77EF5C7B5A53 /* Pods-MomirVigV2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MomirVigV2/Info.plist;

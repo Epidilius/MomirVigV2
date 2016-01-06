@@ -11,6 +11,8 @@
 
 @interface ViewController : UIViewController <UIPageViewControllerDataSource>
 
+-(void) CreateNewCardWithCMC:(NSInteger) aCMC;
+
 @property (strong, nonatomic) UIPageViewController *mPageViewController;
 @property (strong, nonatomic) NSMutableArray *mViewControllerArray;
 

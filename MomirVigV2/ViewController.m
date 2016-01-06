@@ -14,7 +14,7 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -52,7 +52,7 @@
     [self FirstTimeSetup];
 }
 
-- (void)didReceiveMemoryWarning {
+-(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -65,11 +65,22 @@
     
     [self.mPageImages addObject:aImageID];
 }
-//TODO
--(void) FetchCardWithCMC: (NSInteger*) aCMC {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+
+-(void) CreateNewCardWithCMC:(NSInteger)aCMC {
+    NSString *fileName = [NSString stringWithFormat:@"%li", (long)aCMC];
+    NSString *filePath = [[self.mFilePath stringByAppendingString:self.mCardsPath] stringByAppendingPathComponent:fileName];
+    
+    
+    //TODO: Make a C# file and parse the JSON file, then compare it with what I get when I parse the sets here
+    
+    
+    //TODO: Swap size of array for maxNumber here
+    NSInteger maxNumber = 350;
+    int randNum = arc4random_uniform(maxNumber);
+    
+
+    //TODO: Load the file, break it into an array, get a random number between beginning and end of array
+    //TODO: If array only contains 1 element, popup a message saying "No creatures in that CMC" and return
 }
 
 -(void) DownloadImageWithID:(NSString*) aID {
@@ -93,7 +104,7 @@
 }
 
 -(void) FirstTimeSetup {
-    //TODO: Check if this already exists. If it does, return
+    //TODO: Check if each set exists. If it does, continue the loop
     
     NSError* err = nil;
     //TODO: Remove this
@@ -191,14 +202,14 @@
     // Create file manager
     //NSFileManager *fileMgr = [NSFileManager defaultManager];
         
-    NSString *filePath = [[self.mFilePath stringByAppendingString:self.mCardsPath ] stringByAppendingPathComponent:aFileName];
+    NSString *filePath = [[self.mFilePath stringByAppendingString:self.mCardsPath] stringByAppendingPathComponent:aFileName];
     
     NSLog(@"string to write:%@",aToSave);
     // Write to the file
     [aToSave writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
 
-- (NSArray *)GetPathsOfType:(NSString *)aType InDirectory:(NSString *)aDirectoryPath{
+-(NSArray *)GetPathsOfType:(NSString *)aType InDirectory:(NSString *)aDirectoryPath{
     
     NSMutableArray *filePaths = [[NSMutableArray alloc] init];
     
@@ -261,7 +272,7 @@
     return 0;
 }
 
-//TODO: Change this to take in a JSON object. Have another function to decipher it and get back the title and image
+//TODO: Change this to take in a couple of strings and set the title and image
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (([self.mPageTitles count] == 0) || (index >= [self.mPageTitles count])) {
@@ -270,9 +281,12 @@
     
     // Create a new view controller and pass suitable data.
     PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    //pageContentViewController
     pageContentViewController.mImageFile = self.mPageImages[index];
     pageContentViewController.mTitleText = self.mPageTitles[index];
     pageContentViewController.mPageIndex = index;
+    
+    [pageContentViewController SetParent:self];
     
     return pageContentViewController;
 }

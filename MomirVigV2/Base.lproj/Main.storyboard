@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GsU-Po-UiJ">
-                                <rect key="frame" x="18" y="95" width="560" height="485"/>
+                                <rect key="frame" x="18" y="95" width="562" height="485"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fi-Pa-CFq">
                                 <rect key="frame" x="279" y="66" width="42" height="21"/>
@@ -79,18 +79,28 @@
                                 </constraints>
                                 <state key="normal" title="U"/>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FiF-ul-NEe">
+                                <rect key="frame" x="251" y="126" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="RVv-0O-El8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="QBh-lg-Hrr" secondAttribute="trailing" constant="2" id="3ee-WI-lxT"/>
                             <constraint firstItem="5fi-Pa-CFq" firstAttribute="centerX" secondItem="wDJ-Eb-0vD" secondAttribute="centerX" id="8dP-FH-ApS"/>
+                            <constraint firstItem="FiF-ul-NEe" firstAttribute="top" secondItem="5fi-Pa-CFq" secondAttribute="bottom" constant="39" id="Ffe-eK-tle"/>
                             <constraint firstItem="QBh-lg-Hrr" firstAttribute="baseline" secondItem="45f-jP-A1c" secondAttribute="baseline" id="Fge-1W-sQV"/>
                             <constraint firstItem="vlr-9b-OdV" firstAttribute="baseline" secondItem="n6x-TR-pGo" secondAttribute="baseline" id="IAy-pU-V5H"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GsU-Po-UiJ" secondAttribute="trailing" constant="2" id="OjK-7h-qHE"/>
+                            <constraint firstItem="FiF-ul-NEe" firstAttribute="centerX" secondItem="5fi-Pa-CFq" secondAttribute="centerX" id="IfL-to-TV7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GsU-Po-UiJ" secondAttribute="trailing" id="OjK-7h-qHE"/>
                             <constraint firstItem="vlr-9b-OdV" firstAttribute="top" secondItem="ybq-UY-tei" secondAttribute="bottom" constant="8" id="Osy-cX-9Yv"/>
                             <constraint firstItem="LOg-HI-Ug7" firstAttribute="top" secondItem="ybq-UY-tei" secondAttribute="bottom" constant="8" symbolic="YES" id="Smr-kE-T0N"/>
                             <constraint firstItem="GsU-Po-UiJ" firstAttribute="leading" secondItem="wDJ-Eb-0vD" secondAttribute="leadingMargin" constant="-2" id="TdC-lP-aA5"/>
-                            <constraint firstItem="QBh-lg-Hrr" firstAttribute="trailing" secondItem="GsU-Po-UiJ" secondAttribute="trailing" id="WKO-tE-8UQ"/>
+                            <constraint firstItem="QBh-lg-Hrr" firstAttribute="trailing" secondItem="GsU-Po-UiJ" secondAttribute="trailing" constant="-2" id="WKO-tE-8UQ"/>
                             <constraint firstItem="M9O-yn-fXS" firstAttribute="leading" secondItem="pYf-zd-O7y" secondAttribute="trailing" constant="8" symbolic="YES" id="WVB-do-VTF"/>
                             <constraint firstItem="M9O-yn-fXS" firstAttribute="baseline" secondItem="pYf-zd-O7y" secondAttribute="baseline" id="XdQ-H8-sFR"/>
                             <constraint firstItem="n6x-TR-pGo" firstAttribute="leading" secondItem="LOg-HI-Ug7" secondAttribute="trailing" constant="8" symbolic="YES" id="boo-t7-kkT"/>
@@ -116,6 +126,7 @@
                     <connections>
                         <outlet property="mCardImageView" destination="GsU-Po-UiJ" id="Z15-R5-oZA"/>
                         <outlet property="mCardNameLabel" destination="5fi-Pa-CFq" id="DVX-tE-8EO"/>
+                        <outlet property="textFieldCMC" destination="FiF-ul-NEe" id="b3K-eG-c8E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYv-xU-UdN" userLabel="First Responder" sceneMemberID="firstResponder"/>
