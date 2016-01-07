@@ -58,7 +58,7 @@
     [self FirstTimeSetup];
     
     //TODO: Remove this
-    [self CreateNewCardWithCMC:3];
+    //+[self CreateNewCardWithCMC:3];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -313,6 +313,8 @@
         //TODO: Make a function to add a page
     [_mPageTitles addObject:aName];
     [_mPageImages addObject:aImagePath];
+    
+    [self createPage];
 }
 
 -(NSArray *)GetPathsOfType:(NSString *)aType InDirectory:(NSString *)aDirectoryPath{
@@ -395,5 +397,16 @@
     [pageContentViewController SetParent:self];
     
     return pageContentViewController;
+}
+
+-(void)createPage {
+    // Create a new view controller and pass suitable data.
+    PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    //pageContentViewController
+    pageContentViewController.mImageFile = [self.mPageImages lastObject];
+    pageContentViewController.mTitleText = [self.mPageTitles lastObject];
+    pageContentViewController.mPageIndex = self.mPageImages.count;
+    
+    [pageContentViewController SetParent:self];
 }
 @end
