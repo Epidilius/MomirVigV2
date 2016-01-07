@@ -77,8 +77,15 @@
     
     NSDictionary* allPossibleCards = [self LoadFileFromPath:filePath];
     
-    if(allPossibleCards.count == 1) {
-        //TODO: Make popup message saying "No creatures in that CMC" and return
+    if(allPossibleCards.count <= 1) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Card For CMC"
+                                                        message:@"Try entering a more reasonable number."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        return;
     }
     
     NSArray *cardIDs = [allPossibleCards allKeys];
@@ -147,7 +154,7 @@
             //NSLog(dict);
             if([type isEqual: @"Creature"] && ![layout isEqual:@"token"]) {
                 if([dict valueForKey:@"multiverseid"] == nil) {
-                    NSLog(@"No multiverseid in set: %@", setCode);
+                    NSLog(@"No multiverseid for card: %@", [dict valueForKey:@"name"]);
                     continue;
                 }
                 
