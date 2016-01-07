@@ -19,7 +19,22 @@
     self.mGrayView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.mGrayView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
     
-    self.mCardImageView.image = [UIImage imageNamed:self.mImageFile];
+    if([self.mImageFile isEqualToString:@"MODO.jpeg"])
+        self.mCardImageView.image = [UIImage imageNamed:self.mImageFile];
+    else {
+        NSError *error = nil;
+        NSData *data = [NSData dataWithContentsOfFile:self.mImageFile options:0 error:&error];
+        UIImage *image = [UIImage imageWithData: data];
+        
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+        
+        image = [self imageWithImage:image scaledToSize:CGSizeMake(screenWidth, screenHeight)];
+        
+        self.mCardImageView.image = image;
+    }
+    
     self.mCardNameLabel.text = self.mTitleText;
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
@@ -30,6 +45,17 @@
                            nil];
     [numberToolbar sizeToFit];
     self.textFieldCMC.inputAccessoryView = numberToolbar;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (IBAction)GenerateNewCard:(id)sender {

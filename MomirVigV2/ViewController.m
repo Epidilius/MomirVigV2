@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 
+//TODO: Make a C# file and parse the JSON file, then compare it with what I get when I parse the sets here
+//TODO: Make the first time run, save, load, and image fetch happen in background with swirly load thing
+//TODO: Rename the first time run function to OnStartup or something, and add that check
+
 @interface ViewController ()
 
 @end
@@ -22,8 +26,10 @@
     self.mPageImages = [[NSMutableArray alloc] init];
     
     //Set up homepage
-    _mPageTitles = @[@"Momir Vig Avatar"];
-    _mPageImages = @[@"MODO.jpeg"];
+    _mPageTitles = [[NSMutableArray alloc] init];
+    _mPageImages = [[NSMutableArray alloc] init];
+    [_mPageTitles addObject:@"Momir Vig Avatar"];
+    [_mPageImages addObject:@"MODO.jpeg"];
     
     self.mURL = @"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=ABCDEF&type=card";
     self.mPortionOfURLToReplace = @"ABCDEF";
@@ -50,6 +56,9 @@
     [self.mPageViewController didMoveToParentViewController:self];
     
     [self FirstTimeSetup];
+    
+    //TODO: Remove this
+    [self CreateNewCardWithCMC:3];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -57,54 +66,31 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) AddPageWithTitle:(NSString*)aTitle AndImageID:(NSString*)aImageID {
-    [self.mPageTitles addObject:aTitle];
-    
-    
-    [self DownloadImageWithID:aImageID];
-    
-    [self.mPageImages addObject:aImageID];
-}
-
 -(void) CreateNewCardWithCMC:(NSInteger)aCMC {
-    NSString *fileName = [NSString stringWithFormat:@"%li", (long)aCMC];
+    NSString *fileName = [[NSString stringWithFormat:@"%li", (long)aCMC] stringByAppendingString:@".txt"];
     NSString *filePath = [[self.mFilePath stringByAppendingString:self.mCardsPath] stringByAppendingPathComponent:fileName];
     
+    NSDictionary* allPossibleCards = [self LoadFileFromPath:filePath];
     
-    //TODO: Make a C# file and parse the JSON file, then compare it with what I get when I parse the sets here
+    if(allPossibleCards.count == 1) {
+        //TODO: Make popup message saying "No creatures in that CMC" and return
+    }
     
+    NSArray *cardIDs = [allPossibleCards allKeys];
     
-    //TODO: Swap size of array for maxNumber here
-    NSInteger maxNumber = 350;
+    NSInteger maxNumber = allPossibleCards.count - 1;
     int randNum = arc4random_uniform(maxNumber);
     
-
-    //TODO: Load the file, break it into an array, get a random number between beginning and end of array
-    //TODO: If array only contains 1 element, popup a message saying "No creatures in that CMC" and return
-}
-
--(void) DownloadImageWithID:(NSString*) aID {
+    NSString *cardID = [cardIDs objectAtIndex:randNum];
+    NSString *cardName = [allPossibleCards objectForKey:cardID];
     
-    //Make path for image
-    NSString* filePath = [[self.mPaths objectAtIndex:0] stringByAppendingPathComponent:self.mFilePath];
-    filePath = [NSString stringWithFormat:@"%@,%@", filePath, aID];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
-    
-    if(fileExists) return;
-    
-    NSString* url = [self.mURL stringByReplacingOccurrencesOfString:self.mPortionOfURLToReplace withString:aID];
-    
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
-    UIImage *image = [UIImage imageWithData: imageData];
-    
-    // Save image.
-    [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
-    
-    //return image;
+    [self GetImageWithCardID:cardID AndName:cardName];
+    //TODO: Make new view page with name and ID
 }
 
 -(void) FirstTimeSetup {
     //TODO: Check if each set exists. If it does, continue the loop
+    [self CreateFolders];
     
     NSError* err = nil;
     //TODO: Remove this
@@ -155,7 +141,12 @@
             
             //NSLog(dict);
             if([type isEqual: @"Creature"] && ![layout isEqual:@"token"]) {
-                NSString *cardID = [dict valueForKey:@"id"];
+                if([dict valueForKey:@"multiverseid"] == nil) {
+                    NSLog(@"No multiverseid in set: %@", setCode);
+                    continue;
+                }
+                
+                NSString *cardID = [[dict valueForKey:@"multiverseid"] description];
                 cardID = [cardID stringByAppendingString:@"---"];
                 NSString *name = [dict valueForKey:@"name"];
                 NSInteger cmc = [[dict valueForKey:@"cmc"] intValue];
@@ -194,19 +185,134 @@
     //NSLog(@"Imported Cards: %@", allCardData);
 }
 
+-(void) CreateFolders {
+    //CREATE FILE
+    NSError *error;
+    NSString *filePath = [self.mFilePath stringByAppendingString:self.mCardsPath];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:filePath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    if (error != nil) {
+        NSLog(@"error creating directory: %@", error);
+    }
+    
+    error = nil;
+    filePath = [self.mFilePath stringByAppendingString:self.mImagesPath];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:filePath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    if (error != nil) {
+        NSLog(@"error creating directory: %@", error);
+    }
+}
+
 -(void) SaveToFile:(NSString*) aToSave WithName:(NSString*) aFileName{
     //CREATE FILE
     
     NSError *error;
     
-    // Create file manager
-    //NSFileManager *fileMgr = [NSFileManager defaultManager];
-        
-    NSString *filePath = [[self.mFilePath stringByAppendingString:self.mCardsPath] stringByAppendingPathComponent:aFileName];
+    NSString *filePath = [self.mFilePath stringByAppendingString:self.mCardsPath];
     
-    NSLog(@"string to write:%@",aToSave);
+    [[NSFileManager defaultManager] createDirectoryAtPath:filePath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    if (error != nil) {
+        NSLog(@"error creating directory: %@", error);
+    }
+    
+    
+    
+    //Reset the error
+    error = nil;
+    
+    filePath = [filePath stringByAppendingPathComponent:aFileName];
+    
     // Write to the file
     [aToSave writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    NSLog(@"string to write:%@",aToSave);
+}
+
+-(NSDictionary*) LoadFileFromPath:(NSString*) aPath {
+    //Card to card delimiter: |
+    //Id to name delimiter: ---
+    //Ignore element 0, this is the CMC of the array
+    
+    NSLog(aPath);
+    
+    NSError *error = nil;
+    
+    NSString *content = [NSString stringWithContentsOfFile:aPath encoding:NSUTF8StringEncoding error:&error];
+    
+    if(error != nil)
+        NSLog(@"Error loading card file: %@", error);
+    
+    NSDictionary* cards;
+    
+    NSArray *cardArray = [content componentsSeparatedByString:@"|"];
+    NSMutableArray *cardIDArray = [[NSMutableArray alloc] init];
+    NSMutableArray *cardNameArray = [[NSMutableArray alloc] init];
+    
+    for(int i = 1; i < cardArray.count; i++) {
+        NSArray *cardInfo = [[cardArray objectAtIndex:i] componentsSeparatedByString:@"---"];
+        
+        if(cardInfo.count != 2) {
+            NSLog(@"%@", cardInfo);
+            continue;
+        }
+        
+        //ID is element 0, name is 1
+        [cardIDArray addObject:[cardInfo objectAtIndex:0]];
+        [cardNameArray addObject:[cardInfo objectAtIndex:1]];
+    }
+    
+    if(cardIDArray.count == cardNameArray.count) {
+        cards = [NSDictionary dictionaryWithObjects:cardNameArray forKeys:cardIDArray];
+    }
+    
+    return cards;
+}
+
+-(void) GetImageWithCardID:(NSString*) aID AndName:(NSString*)aName {
+    //Make path for image
+    NSString* filePath = [self.mFilePath stringByAppendingPathComponent:self.mImagesPath];
+    filePath = [NSString stringWithFormat:@"%@/%@.txt", filePath, aID];
+    //BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    
+    //if(fileExists == true)
+    //    return nil;
+    //TODO: Load image and return it
+    
+    NSString *urlPath = [self.mURL stringByReplacingOccurrencesOfString:self.mPortionOfURLToReplace withString:aID];
+    NSURL *urlToFetchFrom = [NSURL URLWithString:urlPath];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        
+        NSData *data = [NSData dataWithContentsOfURL:urlToFetchFrom options:NSDataReadingUncached error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Save image.
+            NSError *error = nil;
+            [data writeToFile:filePath options:NSDataWritingAtomic error:&error];
+            [self ImageHasBeenFetched:filePath WithName:aName];
+        });
+        
+    });
+    
+}
+
+//TODO: Change that to image path
+-(void) ImageHasBeenFetched:(NSString*)aImagePath WithName:(NSString*) aName{
+        //TODO: Make a function to add a page
+    [_mPageTitles addObject:aName];
+    [_mPageImages addObject:aImagePath];
 }
 
 -(NSArray *)GetPathsOfType:(NSString *)aType InDirectory:(NSString *)aDirectoryPath{
