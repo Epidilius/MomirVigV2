@@ -7,19 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0956D51C3E09C700D58214 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0956D41C3E09C700D58214 /* LaunchScreen.storyboard */; };
 		6B829F771C3789490085E257 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F761C3789490085E257 /* main.m */; };
 		6B829F7A1C3789490085E257 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F791C3789490085E257 /* AppDelegate.m */; };
 		6B829F7D1C37894A0085E257 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F7C1C37894A0085E257 /* ViewController.m */; };
 		6B829F801C37894A0085E257 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B829F7E1C37894A0085E257 /* Main.storyboard */; };
 		6B829F821C37894A0085E257 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B829F811C37894A0085E257 /* Assets.xcassets */; };
-		6B829F851C37894A0085E257 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B829F831C37894A0085E257 /* LaunchScreen.storyboard */; };
 		6B829F901C37894B0085E257 /* MomirVigV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F8F1C37894B0085E257 /* MomirVigV2Tests.m */; };
 		6B829F9B1C37894B0085E257 /* MomirVigV2UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F9A1C37894B0085E257 /* MomirVigV2UITests.m */; };
 		6B829FAA1C378B1F0085E257 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829FA91C378B1F0085E257 /* PageContentViewController.m */; };
-		6B829FB01C378EFC0085E257 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAC1C378EFC0085E257 /* page1.png */; };
-		6B829FB11C378EFC0085E257 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAD1C378EFC0085E257 /* page2.png */; };
-		6B829FB21C378EFC0085E257 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAE1C378EFC0085E257 /* page3.png */; };
-		6B829FB31C378EFC0085E257 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FAF1C378EFC0085E257 /* page4.png */; };
 		6B829FBA1C38C0EE0085E257 /* MODO.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6B829FB91C38C0EE0085E257 /* MODO.jpeg */; };
 		6B87EAA01C3A0DF100F991BD /* 10E.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B87E9E41C3A0DF100F991BD /* 10E.json */; };
 		6B87EAA11C3A0DF100F991BD /* 2ED.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B87E9E51C3A0DF100F991BD /* 2ED.json */; };
@@ -229,6 +225,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B0956D41C3E09C700D58214 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B829F721C3789480085E257 /* MomirVigV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomirVigV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B829F761C3789490085E257 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B829F781C3789490085E257 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -237,7 +234,6 @@
 		6B829F7C1C37894A0085E257 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6B829F7F1C37894A0085E257 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6B829F811C37894A0085E257 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6B829F841C37894A0085E257 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B829F861C37894A0085E257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B829F8B1C37894B0085E257 /* MomirVigV2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomirVigV2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B829F8F1C37894B0085E257 /* MomirVigV2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MomirVigV2Tests.m; sourceTree = "<group>"; };
@@ -247,10 +243,6 @@
 		6B829F9C1C37894B0085E257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B829FA81C378B1F0085E257 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		6B829FA91C378B1F0085E257 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
-		6B829FAC1C378EFC0085E257 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
-		6B829FAD1C378EFC0085E257 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
-		6B829FAE1C378EFC0085E257 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
-		6B829FAF1C378EFC0085E257 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
 		6B829FB91C38C0EE0085E257 /* MODO.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MODO.jpeg; sourceTree = "<group>"; };
 		6B87E9E41C3A0DF100F991BD /* 10E.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 10E.json; sourceTree = "<group>"; };
 		6B87E9E51C3A0DF100F991BD /* 2ED.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 2ED.json; sourceTree = "<group>"; };
@@ -511,7 +503,6 @@
 			isa = PBXGroup;
 			children = (
 				6B829FB41C38BEDF0085E257 /* Cards */,
-				6B829FAB1C378EFC0085E257 /* PageViewDemoImages */,
 				6B829F781C3789490085E257 /* AppDelegate.h */,
 				6B829F791C3789490085E257 /* AppDelegate.m */,
 				6B829F7B1C37894A0085E257 /* ViewController.h */,
@@ -520,7 +511,7 @@
 				6B829FA81C378B1F0085E257 /* PageContentViewController.h */,
 				6B829FA91C378B1F0085E257 /* PageContentViewController.m */,
 				6B829F811C37894A0085E257 /* Assets.xcassets */,
-				6B829F831C37894A0085E257 /* LaunchScreen.storyboard */,
+				6B0956D41C3E09C700D58214 /* LaunchScreen.storyboard */,
 				6B829F861C37894A0085E257 /* Info.plist */,
 				6B829F751C3789490085E257 /* Supporting Files */,
 			);
@@ -551,17 +542,6 @@
 				6B829F9C1C37894B0085E257 /* Info.plist */,
 			);
 			path = MomirVigV2UITests;
-			sourceTree = "<group>";
-		};
-		6B829FAB1C378EFC0085E257 /* PageViewDemoImages */ = {
-			isa = PBXGroup;
-			children = (
-				6B829FAC1C378EFC0085E257 /* page1.png */,
-				6B829FAD1C378EFC0085E257 /* page2.png */,
-				6B829FAE1C378EFC0085E257 /* page3.png */,
-				6B829FAF1C378EFC0085E257 /* page4.png */,
-			);
-			path = PageViewDemoImages;
 			sourceTree = "<group>";
 		};
 		6B829FB41C38BEDF0085E257 /* Cards */ = {
@@ -956,7 +936,6 @@
 				6B87EB251C3A0DF100F991BD /* PLC.json in Resources */,
 				6B87EB471C3A0DF100F991BD /* TPR.json in Resources */,
 				6B87EAE31C3A0DF100F991BD /* EVG.json in Resources */,
-				6B829F851C37894A0085E257 /* LaunchScreen.storyboard in Resources */,
 				6B829F821C37894A0085E257 /* Assets.xcassets in Resources */,
 				6B87EB1F1C3A0DF100F991BD /* pFNM.json in Resources */,
 				6B87EAB61C3A0DF100F991BD /* BRB.json in Resources */,
@@ -975,7 +954,6 @@
 				6B87EAC81C3A0DF100F991BD /* DD3_EVG.json in Resources */,
 				6B87EB1E1C3A0DF100F991BD /* pELP.json in Resources */,
 				6B87EB4E1C3A0DF100F991BD /* USG.json in Resources */,
-				6B829FB21C378EFC0085E257 /* page3.png in Resources */,
 				6B87EB491C3A0DF100F991BD /* TSP.json in Resources */,
 				6B87EADC1C3A0DF100F991BD /* DKM.json in Resources */,
 				6B87EB4C1C3A0DF100F991BD /* ULG.json in Resources */,
@@ -989,12 +967,10 @@
 				6B87EACA1C3A0DF100F991BD /* DD3_JVC.json in Resources */,
 				6B87EB3D1C3A0DF100F991BD /* S00.json in Resources */,
 				6B87EAA41C3A0DF100F991BD /* 5DN.json in Resources */,
-				6B829FB31C378EFC0085E257 /* page4.png in Resources */,
 				6B87EACC1C3A0DF100F991BD /* DDD.json in Resources */,
 				6B87EAA91C3A0DF100F991BD /* 9ED.json in Resources */,
 				6B87EB261C3A0DF100F991BD /* pLGM.json in Resources */,
 				6B87EB051C3A0DF100F991BD /* ME4.json in Resources */,
-				6B829FB01C378EFC0085E257 /* page1.png in Resources */,
 				6B87EADD1C3A0DF100F991BD /* DPA.json in Resources */,
 				6B87EB221C3A0DF100F991BD /* pGTW.json in Resources */,
 				6B87EB371C3A0DF100F991BD /* pWOS.json in Resources */,
@@ -1024,6 +1000,7 @@
 				6B87EB201C3A0DF100F991BD /* pGPX.json in Resources */,
 				6B87EAC01C3A0DF100F991BD /* CMD.json in Resources */,
 				6B87EAE91C3A0DF100F991BD /* FUT.json in Resources */,
+				6B0956D51C3E09C700D58214 /* LaunchScreen.storyboard in Resources */,
 				6B87EB211C3A0DF100F991BD /* pGRU.json in Resources */,
 				6B87EACD1C3A0DF100F991BD /* DDE.json in Resources */,
 				6B87EAB31C3A0DF100F991BD /* BFZ.json in Resources */,
@@ -1058,7 +1035,6 @@
 				6B87EB441C3A0DF100F991BD /* THS.json in Resources */,
 				6B87EAFD1C3A0DF100F991BD /* M12.json in Resources */,
 				6B87EAF51C3A0DF100F991BD /* KTK.json in Resources */,
-				6B829FB11C378EFC0085E257 /* page2.png in Resources */,
 				6B87EAD91C3A0DF100F991BD /* DGM.json in Resources */,
 				6B87EAAE1C3A0DF100F991BD /* ARC.json in Resources */,
 				6B87EB581C3A0DF100F991BD /* VMA.json in Resources */,
@@ -1136,14 +1112,6 @@
 				6B829F7F1C37894A0085E257 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6B829F831C37894A0085E257 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6B829F841C37894A0085E257 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1238,7 +1206,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MomirVigV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = JoelCright.MomirVigV2;
+				PRODUCT_BUNDLE_IDENTIFIER = JoelCright.MomirBasic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1250,7 +1218,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MomirVigV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = JoelCright.MomirVigV2;
+				PRODUCT_BUNDLE_IDENTIFIER = JoelCright.MomirBasic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
