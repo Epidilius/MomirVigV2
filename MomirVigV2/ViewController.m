@@ -11,6 +11,9 @@
 //TODO: Make a C# file and parse the JSON file, then compare it with what I get when I parse the sets here
 //TODO: Make the first time run, save, load, and image fetch happen in background with swirly load thing
 //TODO: Rename the first time run function to OnStartup or something, and add that check
+//TODO: Each other button
+//TODO: The menu should have an option to not save data on phone, mention that every image is ~200 mbs
+    //If this is checked, on close delete every file in the CardImage directory
 
 @interface ViewController ()
 
