@@ -15,7 +15,9 @@
 //TODO: Each other button
 //TODO: The menu should have an option to not save data on phone, mention that every image is ~200 mbs
     //If this is checked, on close delete every file in the CardImage directory
-//TODO: Plug in phone. FInd out why it crashes on "apply"
+//TODO: Dl images in first time setup, svae them to CardImages/CMC/id.jpeg
+//TODO: Fix issue where you have to swipe back a page before going to the new page
+//TODO: Add a gray backgorund when the spinner is active?
 
 @interface ViewController ()
 
@@ -51,6 +53,7 @@
     
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     _mViewControllerArray = @[startingViewController];
+    //[_mViewControllerArray addObject:startingViewController];
     [self.mPageViewController setViewControllers:_mViewControllerArray direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
@@ -61,9 +64,6 @@
     [self.mPageViewController didMoveToParentViewController:self];
     
     [self FirstTimeSetup];
-    
-    //TODO: Remove this
-    //+[self CreateNewCardWithCMC:3];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -296,9 +296,15 @@
     filePath = [NSString stringWithFormat:@"%@/%@.txt", filePath, aID];
     //BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
     
+    //TODO: Uncomment this
     //if(fileExists == true)
     //    return nil;
-    //TODO: Load image and return it
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(135,140,50,50)];
+    spinner.color = [UIColor blueColor];
+    [spinner startAnimating];
+    [self.view addSubview:spinner];
+
     
     NSString *urlPath = [self.mURL stringByReplacingOccurrencesOfString:self.mPortionOfURLToReplace withString:aID];
     NSURL *urlToFetchFrom = [NSURL URLWithString:urlPath];
@@ -314,6 +320,9 @@
             NSError *error = nil;
             [data writeToFile:filePath options:NSDataWritingAtomic error:&error];
             [self ImageHasBeenFetched:filePath WithName:aName];
+            
+            // stop and remove the spinner on the main thread when done
+            [spinner removeFromSuperview];
         });
         
     });
