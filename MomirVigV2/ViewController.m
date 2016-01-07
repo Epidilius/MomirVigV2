@@ -15,6 +15,7 @@
 //TODO: Each other button
 //TODO: The menu should have an option to not save data on phone, mention that every image is ~200 mbs
     //If this is checked, on close delete every file in the CardImage directory
+//TODO: Plug in phone. FInd out why it crashes on "apply"
 
 @interface ViewController ()
 
