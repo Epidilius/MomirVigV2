@@ -69,6 +69,10 @@
     //[[UIApplication sharedApplication].keyWindow bringSubviewToFront:self.textFieldCMC];
 }
 
+- (IBAction)RemoveCard:(id)sender {
+    [self.mParent RemoveCardAtPage:self];
+}
+
 -(void) SetParent:(ViewController *)aParent {
     self.mParent = aParent;
 }

@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIView *mGrayView;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldCMC;
 - (IBAction)GenerateNewCard:(id)sender;
+- (IBAction)RemoveCard:(id)sender;
 
 @property (strong, nonatomic) ViewController* mParent;
 -(void) SetParent:(ViewController*) aParent;

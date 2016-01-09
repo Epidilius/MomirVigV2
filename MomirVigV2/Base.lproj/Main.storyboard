@@ -50,6 +50,9 @@
                                     <constraint firstAttribute="width" constant="25" id="Smy-L5-F6O"/>
                                 </constraints>
                                 <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="RemoveCard:" destination="s8v-tq-b9Q" eventType="touchUpInside" id="L5Y-81-kT5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYf-zd-O7y">
                                 <rect key="frame" x="288" y="28" width="25" height="30"/>

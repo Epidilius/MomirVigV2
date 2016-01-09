@@ -51,9 +51,12 @@
     self.mPageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.mPageViewController.dataSource = self;
     
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    _mViewControllerArray = @[startingViewController];
-    //[_mViewControllerArray addObject:startingViewController];
+    PageContentViewController *startingViewController = [self viewControllerAtIndex:0 goingForward:YES];
+    //_mViewControllerArray = @[startingViewController];
+    _mViewControllerArray = [[NSMutableArray alloc] init];
+    [_mViewControllerArray addObject:startingViewController];
+    _mFirstViewControllerArray = @[startingViewController];
+    _mIndicesRemoved = [[NSMutableArray alloc] init];
     [self.mPageViewController setViewControllers:_mViewControllerArray direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
@@ -98,6 +101,10 @@
     
     [self GetImageWithCardID:cardID AndName:cardName];
     //TODO: Make new view page with name and ID
+}
+
+-(void) RemoveCardAtPage:(PageContentViewController*) aPage {
+    [self removePage:aPage];
 }
 
 -(void) FirstTimeSetup {
@@ -373,7 +380,7 @@
     }
     
     index--;
-    return [self viewControllerAtIndex:index];
+    return [self viewControllerAtIndex:index goingForward:NO];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
@@ -388,7 +395,7 @@
     if (index == [self.mPageTitles count]) {
                 return nil;
     }
-    return [self viewControllerAtIndex:index];
+    return [self viewControllerAtIndex:index goingForward:YES];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
@@ -402,10 +409,22 @@
 }
 
 //TODO: Change this to take in a couple of strings and set the title and image
-- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
+- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index goingForward:(BOOL) aForward
 {
     if (([self.mPageTitles count] == 0) || (index >= [self.mPageTitles count])) {
         return nil;
+    }
+    
+    NSInteger direction = 0;
+    if(aForward == true)
+        direction = 1;
+    else
+        direction = -1;
+    
+    for(int i = 0; i < self.mIndicesRemoved.count; i++) {
+        if(index == [self.mIndicesRemoved objectAtIndex:i]) {
+            //return [self viewControllerAtIndex:(index + direction) goingForward:aForward];
+        }
     }
     
     // Create a new view controller and pass suitable data.
@@ -429,5 +448,32 @@
     pageContentViewController.mPageIndex = self.mPageImages.count;
     
     [pageContentViewController SetParent:self];
+    //[self.mViewControllerArray addObject:pageContentViewController];
+    //self.mViewControllerArray = @[pageContentViewController];
+    //TODO: THIS
+    [self.mPageViewController setViewControllers:_mViewControllerArray direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
+
+-(void)removePage:(PageContentViewController*) aPage {
+    //TODO: Get viewControllerAtIndex:(mPgaeIndex - 1);
+    //[self.mPageViewController setViewControllers:_mFirstViewControllerArray direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+    
+    [self.mIndicesRemoved addObject:[NSNumber numberWithInt:aPage.mPageIndex ]];
+    
+    /*[aPage willMoveToParentViewController:nil];
+    [aPage.view removeFromSuperview];
+    [aPage removeFromParentViewController];
+    
+    [self.mPageViewController setViewControllers:_mFirstViewControllerArray direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+    
+    aPage = nil;
+    
+    [self.mPageTitles removeObjectAtIndex:aPage.mPageIndex];
+    [self.mPageImages removeObjectAtIndex:aPage.mPageIndex];
+    
+    for (int i = 0; i < self.mPageTitles.count; i++) {
+       // [self viewControllerAtIndex:i].mPageIndex--;
+    }*/
+}
+
 @end

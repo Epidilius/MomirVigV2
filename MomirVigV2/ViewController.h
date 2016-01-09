@@ -9,12 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PageContentViewController.h"
 
+@class PageContentViewController;
+
 @interface ViewController : UIViewController <UIPageViewControllerDataSource>
 
 -(void) CreateNewCardWithCMC:(NSInteger) aCMC;
+-(void) RemoveCardAtPage:(PageContentViewController*) aPage;
 
 @property (strong, nonatomic) UIPageViewController *mPageViewController;
 @property (strong, nonatomic) NSMutableArray *mViewControllerArray;
+@property (strong, nonatomic) NSMutableArray *mFirstViewControllerArray;
+@property (strong, nonatomic) NSMutableArray *mIndicesRemoved;
 
 @property (strong, nonatomic) NSMutableArray *mPageTitles;
 @property (strong, nonatomic) NSMutableArray *mPageImages;
