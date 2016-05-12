@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 
-//TODO: Make a C# file and parse the JSON file, then compare it with what I get when I parse the sets here
-//TODO: Make the first time run, save, load, and image fetch happen in background with swirly load thing
 //TODO: Rename the first time run function to OnStartup or something, and add that check for each set
     //Make the set check its own function thar returns a bool
 //TODO: Each other button
@@ -17,7 +15,6 @@
     //If this is checked, on close delete every file in the CardImage directory
 //TODO: Dl images in first time setup, svae them to CardImages/CMC/id.jpeg
 //TODO: Fix issue where you have to swipe back a page before going to the new page
-//TODO: Add a gray backgorund when the spinner is active?
 
 @interface ViewController ()
 
@@ -27,7 +24,6 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     self.mPageTitles = [[NSMutableArray alloc] init];
     self.mPageImages = [[NSMutableArray alloc] init];
@@ -46,6 +42,10 @@
     self.mFilePath = [[self.mPaths objectAtIndex:0] stringByAppendingPathComponent:@"/Cards"];
     self.mCardsPath = @"/CardData";
     self.mImagesPath = @"/CardImages";
+    
+    //Create Background
+    self.mGrayView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.mGrayView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
     
     // Create page view controller
     self.mPageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -298,6 +298,7 @@
 }
 
 -(void) GetImageWithCardID:(NSString*) aID AndName:(NSString*)aName {
+    [self.view addSubview:self.mGrayView];
     //Make path for image
     NSString* filePath = [self.mFilePath stringByAppendingPathComponent:self.mImagesPath];
     filePath = [NSString stringWithFormat:@"%@/%@.txt", filePath, aID];
@@ -330,6 +331,7 @@
             
             // stop and remove the spinner on the main thread when done
             [spinner removeFromSuperview];
+            [self.mGrayView removeFromSuperview];
         });
         
     });
@@ -446,7 +448,7 @@
     pageContentViewController.mImageFile = [self.mPageImages lastObject];
     pageContentViewController.mTitleText = [self.mPageTitles lastObject];
     pageContentViewController.mPageIndex = self.mPageImages.count;
-    
+
     [pageContentViewController SetParent:self];
     //[self.mViewControllerArray addObject:pageContentViewController];
     //self.mViewControllerArray = @[pageContentViewController];
@@ -458,22 +460,23 @@
     //TODO: Get viewControllerAtIndex:(mPgaeIndex - 1);
     //[self.mPageViewController setViewControllers:_mFirstViewControllerArray direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
     
-    [self.mIndicesRemoved addObject:[NSNumber numberWithInt:aPage.mPageIndex ]];
+    //[self.mIndicesRemoved addObject:[NSNumber numberWithInt:aPage.mPageIndex ]];
     
-    /*[aPage willMoveToParentViewController:nil];
-    [aPage.view removeFromSuperview];
-    [aPage removeFromParentViewController];
+    //[aPage willMoveToParentViewController:nil];
+    //[aPage.view removeFromSuperview];
+    //[aPage removeFromParentViewController];
+    
+    //[_mFirstViewControllerArray removeObject:aPage];
+    NSInteger index = aPage.mPageIndex;
+    if(index == 0) {
+        //Front page
+        return;
+    }
+    
+    [self.mPageTitles removeObjectAtIndex:index];
+    [self.mPageImages removeObjectAtIndex:index];
     
     [self.mPageViewController setViewControllers:_mFirstViewControllerArray direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
-    
-    aPage = nil;
-    
-    [self.mPageTitles removeObjectAtIndex:aPage.mPageIndex];
-    [self.mPageImages removeObjectAtIndex:aPage.mPageIndex];
-    
-    for (int i = 0; i < self.mPageTitles.count; i++) {
-       // [self viewControllerAtIndex:i].mPageIndex--;
-    }*/
 }
 
 @end

@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSMutableArray *mPageTitles;
 @property (strong, nonatomic) NSMutableArray *mPageImages;
+@property (strong, nonatomic) UIView *mGrayView;
 
 @property (strong, nonatomic) NSArray *mPaths;
 @property (strong, nonatomic) NSString *mFilePath;
