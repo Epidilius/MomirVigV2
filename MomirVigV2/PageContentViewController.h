@@ -16,6 +16,9 @@
 @property (strong, nonatomic) UIView *mGrayView;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldCMC;
 - (IBAction)GenerateNewCard:(id)sender;
+- (IBAction)TapCard:(id)sender;
+- (IBAction)UnTapCard:(id)sender;
+- (UIImage*) RotateImage:(UIImage*) src ToOrientation:(UIImageOrientation) orientation;
 - (IBAction)RemoveCard:(id)sender;
 
 @property (strong, nonatomic) ViewController* mParent;

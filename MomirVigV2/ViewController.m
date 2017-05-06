@@ -304,7 +304,7 @@
     filePath = [NSString stringWithFormat:@"%@/%@.txt", filePath, aID];
     //BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
     
-    //TODO: Uncomment this
+    //TODO: Uncomment this and have it return the image or something
     //if(fileExists == true)
     //    return nil;
     
