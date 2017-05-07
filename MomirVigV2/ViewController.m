@@ -42,6 +42,7 @@
     self.mFilePath = [[self.mPaths objectAtIndex:0] stringByAppendingPathComponent:@"/Cards"];
     self.mCardsPath = @"/CardData";
     self.mImagesPath = @"/CardImages";
+    self.mSetCheckPath = @"/SetsDone";
     
     //Create Background
     self.mGrayView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -138,10 +139,17 @@
                                                            error:&err];
         
         NSString *setCode = [allCardData valueForKey:@"code"];
+        
+        //bool allSetsExist = [self DoAllSetsExist];
+        
+        //if(allSetsExist) return;
+        
         if([setCode isEqualToString:@"UGL"] || [setCode isEqualToString:@"UNH"])
             continue;
         
-        NSLog(setCode);
+#ifdef DEBUG
+        NSLog(@"%@", setCode);
+#endif
         
         allCardData = [allCardData valueForKey:@"cards"];
         
@@ -158,10 +166,11 @@
             
             //NSString *cardName = [dict valueForKey:@"name"];
             
-            //NSLog(dict);
             if([type isEqual: @"Creature"] && ![layout isEqual:@"token"]) {
                 if([dict valueForKey:@"multiverseid"] == nil) {
+#ifdef DEBUG
                     NSLog(@"No multiverseid for card: %@", [dict valueForKey:@"name"]);
+#endif
                     continue;
                 }
                 
@@ -171,7 +180,9 @@
                 NSInteger cmc = [[dict valueForKey:@"cmc"] intValue];
                 
                 if(cmc == 0 && ([layout isEqual: @"flip"] || [layout isEqual:@"double-faced"])) {
-                    NSLog(name);
+#ifdef DEBUG
+                    NSLog(@"%@", name);
+#endif
                     continue;
                 }
                 
@@ -191,6 +202,7 @@
                 [cardDataArray replaceObjectAtIndex:cmc withObject:card];
             }
         }
+        [self SaveToFile:setCode WithName:setCode];
     }
     
     //TODO: Save each element as file
@@ -204,6 +216,31 @@
     //NSLog(@"Imported Cards: %@", allCardData);
 }
 
+-(bool) DoAllSetsExist {
+    NSString *folderPath = [[NSBundle mainBundle] pathForResource:@"2ED" ofType:@"json"];
+    folderPath = [folderPath stringByReplacingOccurrencesOfString:@"2ED.json" withString:@""];
+    
+    NSArray *listOfFiles = [self GetPathsOfType:@"json" InDirectory:folderPath];
+    NSError *err = nil;
+    
+    for(NSString *path in listOfFiles) {
+        
+        NSString* dataPath = [[NSBundle mainBundle] pathForResource:path ofType:@"json"];
+        NSDictionary* allCardData = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
+                                                                    options:kNilOptions
+                                                                      error:&err];
+        
+        NSString *setCode = [allCardData valueForKey:@"code"];
+        
+        NSString *filePath = [[self.mFilePath stringByAppendingString:self.mCardsPath] stringByAppendingPathComponent:setCode];
+    
+        if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]){
+            return false;
+        }
+    }
+    return true;
+}
+
 -(void) CreateFolders {
     //CREATE FILE
     NSError *error;
@@ -214,7 +251,9 @@
                                                attributes:nil
                                                     error:&error];
     if (error != nil) {
+#ifdef DEBUG
         NSLog(@"error creating directory: %@", error);
+#endif
     }
     
     error = nil;
@@ -225,13 +264,13 @@
                                                attributes:nil
                                                     error:&error];
     if (error != nil) {
+#ifdef DEBUG
         NSLog(@"error creating directory: %@", error);
+#endif
     }
 }
 
 -(void) SaveToFile:(NSString*) aToSave WithName:(NSString*) aFileName{
-    //CREATE FILE
-    
     NSError *error;
     
     NSString *filePath = [self.mFilePath stringByAppendingString:self.mCardsPath];
@@ -241,7 +280,9 @@
                                                attributes:nil
                                                     error:&error];
     if (error != nil) {
+#ifdef DEBUG
         NSLog(@"error creating directory: %@", error);
+#endif
     }
     
     
@@ -254,7 +295,9 @@
     // Write to the file
     [aToSave writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     
+#ifdef DEBUG
     NSLog(@"string to write:%@",aToSave);
+#endif
 }
 
 -(NSDictionary*) LoadFileFromPath:(NSString*) aPath {
@@ -262,14 +305,19 @@
     //Id to name delimiter: ---
     //Ignore element 0, this is the CMC of the array
     
+#ifdef DEBUG
     NSLog(aPath);
+#endif
     
     NSError *error = nil;
     
     NSString *content = [NSString stringWithContentsOfFile:aPath encoding:NSUTF8StringEncoding error:&error];
     
-    if(error != nil)
+    if(error != nil) {
+#ifdef DEBUG
         NSLog(@"Error loading card file: %@", error);
+#endif
+    }
     
     NSDictionary* cards;
     
@@ -281,7 +329,9 @@
         NSArray *cardInfo = [[cardArray objectAtIndex:i] componentsSeparatedByString:@"---"];
         
         if(cardInfo.count != 2) {
+#ifdef DEBUG
             NSLog(@"%@", cardInfo);
+#endif
             continue;
         }
         

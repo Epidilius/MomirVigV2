@@ -45,6 +45,11 @@
                            nil];
     [numberToolbar sizeToFit];
     self.textFieldCMC.inputAccessoryView = numberToolbar;
+    
+    //UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TapCard)];
+    //singleTap.numberOfTapsRequired = 1;
+    //self.mCardImageView.userInteractionEnabled = YES;
+    //[self.mCardImageView addGestureRecognizer:singleTap];
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -69,48 +74,27 @@
     //[[UIApplication sharedApplication].keyWindow bringSubviewToFront:self.textFieldCMC];
 }
 
--(void) TapCard:(id) sender {
+-(void) TapCard {
     NSInteger index = self.mPageIndex;
     if(index == 0) {
         //Front page
         return;
     }
+    CGFloat currentRadians = atan2f(self.mCardImageView.transform.b, self.mCardImageView.transform.a);
+    CGFloat currentDegrees = currentRadians * (180 / M_PI);
     
-    self.mCardImageView.image = [self RotateImage:self.mCardImageView.image ToOrientation:UIImageOrientationRight];
-}
-
--(void) UnTapCard:(id)sender {
-    NSInteger index = self.mPageIndex;
-    if(index == 0) {
-        //Front page
-        return;
-    }
+    bool isTapped = (currentDegrees >= 89.0f && currentDegrees <= 91.0f);
     
-    self.mCardImageView.image = [self RotateImage:self.mCardImageView.image ToOrientation:UIImageOrientationUp];
-}
-
-static inline double radians (double degrees) {return degrees * M_PI/180;}
--(UIImage*) RotateImage:(UIImage*) src ToOrientation:(UIImageOrientation) orientation;
-{
-    UIGraphicsBeginImageContext(src.size);
+    CGFloat degrees = 0.0f;
+    CGFloat radians = 0.0f;
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    if(isTapped) degrees = 0.0f;
+    else degrees = 90.0f;
     
-    if (orientation == UIImageOrientationRight) {
-        CGContextRotateCTM (context, radians(90));
-    } else if (orientation == UIImageOrientationLeft) {
-        CGContextRotateCTM (context, radians(-90));
-    } else if (orientation == UIImageOrientationDown) {
-        // NOTHING
-    } else if (orientation == UIImageOrientationUp) {
-        CGContextRotateCTM (context, radians(90));
-    }
+    radians = degrees * M_PI/180;
     
-    [src drawAtPoint:CGPointMake(0, 0)];
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+    self.mCardImageView.transform = CGAffineTransformMakeRotation(radians);
+    self.mCardImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 - (IBAction)RemoveCard:(id)sender {

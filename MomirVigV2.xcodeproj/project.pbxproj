@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6B0956D51C3E09C700D58214 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0956D41C3E09C700D58214 /* LaunchScreen.storyboard */; };
+		6B46B12F1EBF887F0093B18A /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B46B12E1EBF887F0093B18A /* X.png */; };
+		6B46B1311EBF89E60093B18A /* RedX.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B46B1301EBF89E60093B18A /* RedX.png */; };
 		6B829F771C3789490085E257 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F761C3789490085E257 /* main.m */; };
 		6B829F7A1C3789490085E257 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F791C3789490085E257 /* AppDelegate.m */; };
 		6B829F7D1C37894A0085E257 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B829F7C1C37894A0085E257 /* ViewController.m */; };
@@ -226,6 +228,8 @@
 
 /* Begin PBXFileReference section */
 		6B0956D41C3E09C700D58214 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6B46B12E1EBF887F0093B18A /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = X.png; sourceTree = "<group>"; };
+		6B46B1301EBF89E60093B18A /* RedX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedX.png; sourceTree = "<group>"; };
 		6B829F721C3789480085E257 /* MomirVigV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomirVigV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B829F761C3789490085E257 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B829F781C3789490085E257 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -549,6 +553,8 @@
 			children = (
 				6B87E9E31C3A0DF100F991BD /* json */,
 				6B829FB91C38C0EE0085E257 /* MODO.jpeg */,
+				6B46B1301EBF89E60093B18A /* RedX.png */,
+				6B46B12E1EBF887F0093B18A /* X.png */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -881,6 +887,7 @@
 				6B87EACE1C3A0DF100F991BD /* DDF.json in Resources */,
 				6B87EAEE1C3A0DF100F991BD /* HOP.json in Resources */,
 				6B87EAFF1C3A0DF100F991BD /* M14.json in Resources */,
+				6B46B12F1EBF887F0093B18A /* X.png in Resources */,
 				6B87EAC91C3A0DF100F991BD /* DD3_GVL.json in Resources */,
 				6B87EB2D1C3A0DF100F991BD /* POR.json in Resources */,
 				6B87EB3C1C3A0DF100F991BD /* RTR.json in Resources */,
@@ -1037,6 +1044,7 @@
 				6B87EAFD1C3A0DF100F991BD /* M12.json in Resources */,
 				6B87EAF51C3A0DF100F991BD /* KTK.json in Resources */,
 				6B87EAD91C3A0DF100F991BD /* DGM.json in Resources */,
+				6B46B1311EBF89E60093B18A /* RedX.png in Resources */,
 				6B87EAAE1C3A0DF100F991BD /* ARC.json in Resources */,
 				6B87EB581C3A0DF100F991BD /* VMA.json in Resources */,
 				6B87EB231C3A0DF100F991BD /* pHHO.json in Resources */,

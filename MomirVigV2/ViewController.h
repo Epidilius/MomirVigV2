@@ -16,6 +16,8 @@
 -(void) CreateNewCardWithCMC:(NSInteger) aCMC;
 -(void) RemoveCardAtPage:(PageContentViewController*) aPage;
 
+-(bool) DoAllSetsExist;
+
 @property (strong, nonatomic) UIPageViewController *mPageViewController;
 @property (strong, nonatomic) NSMutableArray *mViewControllerArray;
 @property (strong, nonatomic) NSMutableArray *mFirstViewControllerArray;
@@ -27,6 +29,7 @@
 
 @property (strong, nonatomic) NSArray *mPaths;
 @property (strong, nonatomic) NSString *mFilePath;
+@property (strong, nonatomic) NSString *mSetCheckPath;
 @property (strong, nonatomic) NSString *mCardsPath;
 @property (strong, nonatomic) NSString *mImagesPath;
 
